@@ -1,0 +1,56 @@
+name: MacAwake
+
+options:
+  bundleIdPrefix: com.idanbirman
+  xcodeVersion: "26.6"
+  deploymentTarget:
+    macOS: "15.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+
+targets:
+  MacAwake:
+    type: application
+    platform: macOS
+    sources:
+      - MacAwake
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.idanbirman.MacAwake
+        PRODUCT_NAME: MacAwake
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: MacAwake
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_LSUIElement: YES
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        SWIFT_EMIT_LOC_STRINGS: YES
+        CODE_SIGN_STYLE: Automatic
+
+  MacAwakeTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - MacAwakeTests
+    dependencies:
+      - target: MacAwake
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.idanbirman.MacAwakeTests
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  MacAwake:
+    build:
+      targets:
+        MacAwake: all
+        MacAwakeTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - MacAwakeTests

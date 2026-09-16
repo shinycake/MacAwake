@@ -1,0 +1,162 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "1 hour" : {
+
+    },
+    "2 hours" : {
+
+    },
+    "4 hours" : {
+
+    },
+    "5 minutes" : {
+
+    },
+    "8 hours" : {
+
+    },
+    "15 minutes" : {
+
+    },
+    "30 minutes" : {
+
+    },
+    "Application" : {
+
+    },
+    "Application no longer running" : {
+
+    },
+    "Application or executable" : {
+
+    },
+    "Arguments (one per line)" : {
+
+    },
+    "Caffeinate exited with status %d." : {
+
+    },
+    "Caffeinate is off" : {
+
+    },
+    "Caffeinate is on" : {
+
+    },
+    "Choose an application or executable to run." : {
+
+    },
+    "Choose an application…" : {
+
+    },
+    "Choose…" : {
+
+    },
+    "Couldn’t start caffeinate: %@" : {
+
+    },
+    "Couldn’t update Start at Login: %@" : {
+
+    },
+    "Custom" : {
+
+    },
+    "Duration" : {
+
+    },
+    "Duration must be greater than zero." : {
+
+    },
+    "Enter a valid process ID." : {
+
+    },
+    "Enter the utility to run." : {
+
+    },
+    "Executable" : {
+
+    },
+    "Executable arguments, one per line" : {
+
+    },
+    "General" : {
+
+    },
+    "Indefinitely" : {
+
+    },
+    "Keep awake while an executable runs" : {
+
+    },
+    "Keep disks awake" : {
+
+    },
+    "Keep displays awake" : {
+
+    },
+    "Keep Mac awake when connected to power" : {
+
+    },
+    "Keep Mac awake while idle" : {
+
+    },
+    "Login item needs approval" : {
+
+    },
+    "MacAwake" : {
+
+    },
+    "Off" : {
+
+    },
+    "On" : {
+
+    },
+    "Open Login Items…" : {
+
+    },
+    "Open MacAwake at Login" : {
+
+    },
+    "Prevent Sleep" : {
+
+    },
+    "Quit" : {
+
+    },
+    "Refresh applications" : {
+
+    },
+    "Select at least one assertion." : {
+
+    },
+    "Session" : {
+
+    },
+    "Settings…" : {
+
+    },
+    "Simulate user activity" : {
+
+    },
+    "Start" : {
+
+    },
+    "Stop" : {
+
+    },
+    "Stop when an application quits" : {
+
+    },
+    "Stopping…" : {
+
+    },
+    "The selected application is no longer running." : {
+
+    },
+    "Unavailable" : {
+
+    }
+  },
+  "version" : "1.0"
+}
