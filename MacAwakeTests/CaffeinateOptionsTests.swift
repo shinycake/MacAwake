@@ -21,9 +21,22 @@ struct CaffeinateOptionsTests {
         #expect(options.validationError == nil)
         #expect(options.arguments == [
             "-d", "-i", "-m", "-s", "-u",
-            "-t", "90", "-w", "42",
+            "-t", "90", "-w", String(ProcessInfo.processInfo.processIdentifier),
             "/usr/bin/say", "hello world", "--voice", "Samantha"
         ])
+    }
+
+    @Test
+    func alwaysWaitsOnOurOwnProcessRegardlessOfTheChosenApplication() {
+        let ownProcessID = String(ProcessInfo.processInfo.processIdentifier)
+
+        var options = CaffeinateOptions()
+        #expect(options.arguments == ["-i", "-w", ownProcessID])
+
+        options.waitForProcess = true
+        options.processID = 42
+        #expect(options.arguments == ["-i", "-w", ownProcessID])
+        #expect(!options.arguments.contains("42"))
     }
 
     @Test
@@ -41,7 +54,9 @@ struct CaffeinateOptionsTests {
         let controller = CaffeinateController(defaults: defaults)
 
         controller.awakeDuration = .twoHours
-        #expect(controller.options.arguments == ["-i", "-t", "7200"])
+        #expect(controller.options.arguments == [
+            "-i", "-t", "7200", "-w", String(ProcessInfo.processInfo.processIdentifier)
+        ])
 
         controller.awakeDuration = .indefinitely
         #expect(!controller.options.arguments.contains("-t"))

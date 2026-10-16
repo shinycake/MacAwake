@@ -11,6 +11,7 @@
 		25FF49BC7B7DCF8A47A9F639 /* CaffeinateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3A6B37B5709086D077BB3 /* CaffeinateController.swift */; };
 		62EECFD597EB2B5922B45661 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A2F7A47DFA6D7529D09E2 /* SettingsView.swift */; };
 		9ACA92D5D3229FC06CF11B09 /* MacAwakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F47A524E49254C9366D9F2 /* MacAwakeApp.swift */; };
+		A43ACFEB7C0184C0B75B8AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43FF4D5E0874B4A226D44C22 /* Assets.xcassets */; };
 		CE22E9ED6E930E938396D9E0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BA36D4E5524B55440A03CDEF /* Localizable.xcstrings */; };
 		F338C66FE3E31FE05704BA88 /* CaffeinateOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21237D17F7A309DF62CD77F1 /* CaffeinateOptionsTests.swift */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		21237D17F7A309DF62CD77F1 /* CaffeinateOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateOptionsTests.swift; sourceTree = "<group>"; };
 		2F6E0632C41493FD422C5B0F /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		36E3A6B37B5709086D077BB3 /* CaffeinateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateController.swift; sourceTree = "<group>"; };
+		43FF4D5E0874B4A226D44C22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		946A2F7A47DFA6D7529D09E2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A8E00DB84E5EFC44546DAE3A /* MacAwakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacAwakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DD37BFAC51B2D96E6BB78B /* MacAwake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAwake.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 		C1E62A54810F6C4F04D7B7C2 /* MacAwake */ = {
 			isa = PBXGroup;
 			children = (
+				43FF4D5E0874B4A226D44C22 /* Assets.xcassets */,
 				36E3A6B37B5709086D077BB3 /* CaffeinateController.swift */,
 				BA36D4E5524B55440A03CDEF /* Localizable.xcstrings */,
 				07F47A524E49254C9366D9F2 /* MacAwakeApp.swift */,
@@ -153,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43ACFEB7C0184C0B75B8AEE /* Assets.xcassets in Resources */,
 				CE22E9ED6E930E938396D9E0 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

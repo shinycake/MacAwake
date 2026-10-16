@@ -92,7 +92,10 @@ struct CaffeinateOptions: Codable, Equatable {
         if preventSystemSleepOnACPower { result.append("-s") }
         if declareUserActive { result.append("-u") }
         if useTimeout { result += ["-t", String(timeoutSeconds)] }
-        if waitForProcess { result += ["-w", String(processID)] }
+        // caffeinate honours only the last -w, so it is reserved for our own PID:
+        // that way the assertion dies with MacAwake even on a force quit or crash.
+        // "Stop when an application quits" is handled in CaffeinateController instead.
+        result += ["-w", String(ProcessInfo.processInfo.processIdentifier)]
         if runUtility {
             result.append(utilityPath.trimmingCharacters(in: .whitespacesAndNewlines))
             result += utilityArguments
@@ -152,6 +155,12 @@ final class CaffeinateController {
             updateLoginItem()
         }
     }
+    var startsSessionOnLaunch: Bool {
+        didSet {
+            guard startsSessionOnLaunch != oldValue else { return }
+            defaults.set(startsSessionOnLaunch, forKey: "startsSessionOnLaunch")
+        }
+    }
 
     @ObservationIgnored private let defaults: UserDefaults
     @ObservationIgnored private var caffeinateProcess: Process?
@@ -176,9 +185,25 @@ final class CaffeinateController {
             awakeDuration = AwakeDuration.allCases.first { $0.seconds == loadedOptions.timeoutSeconds } ?? .custom
         }
 
+        startsSessionOnLaunch = defaults.bool(forKey: "startsSessionOnLaunch")
+
         let status = SMAppService.mainApp.status
         startsAtLogin = status == .enabled || status == .requiresApproval
         loginItemRequiresApproval = status == .requiresApproval
+
+        // Lives for the whole app lifetime, like this controller, so it is never removed.
+        NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didTerminateApplicationNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] notification in
+            let application = notification.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication
+            let terminatedProcessID = application?.processIdentifier
+            Task { @MainActor in
+                guard let terminatedProcessID else { return }
+                self?.applicationDidTerminate(processID: Int(terminatedProcessID))
+            }
+        }
     }
 
     func toggle() {
@@ -265,6 +290,11 @@ final class CaffeinateController {
         formatter.allowedUnits = [.hour, .minute]
         formatter.unitsStyle = .abbreviated
         return formatter.string(from: TimeInterval(options.timeoutSeconds)) ?? String(localized: "Custom")
+    }
+
+    private func applicationDidTerminate(processID: Int) {
+        guard isRunning, options.waitForProcess, options.processID == processID else { return }
+        stop()
     }
 
     private func launchCaffeinate() {

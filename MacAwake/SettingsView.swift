@@ -81,6 +81,7 @@ struct SettingsView: View {
 
             Section("General") {
                 Toggle("Open MacAwake at Login", isOn: $controller.startsAtLogin)
+                Toggle("Start a session when MacAwake opens", isOn: $controller.startsSessionOnLaunch)
                 if controller.loginItemRequiresApproval {
                     LabeledContent("Login item needs approval") {
                         Button("Open Login Items…") {

@@ -30,6 +30,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var rightClickMonitor: Any?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        if controller.startsSessionOnLaunch {
+            controller.start()
+        }
         rightClickMonitor = NSEvent.addLocalMonitorForEvents(matching: .rightMouseDown) { [weak self] event in
             guard event.window == nil || event.window?.level == .statusBar else { return event }
             self?.controller.toggle()

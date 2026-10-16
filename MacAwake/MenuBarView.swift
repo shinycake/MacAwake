@@ -1,6 +1,8 @@
+import AppKit
 import SwiftUI
 
 struct MenuBarView: View {
+    @Environment(\.openSettings) private var openSettings
     @Bindable var controller: CaffeinateController
     let quit: () -> Void
 
@@ -39,7 +41,10 @@ struct MenuBarView: View {
             Divider()
 
             HStack {
-                SettingsLink {
+                Button {
+                    openSettings()
+                    NSApp.activate()
+                } label: {
                     Label("Settings…", systemImage: "gear")
                 }
                 Spacer()
